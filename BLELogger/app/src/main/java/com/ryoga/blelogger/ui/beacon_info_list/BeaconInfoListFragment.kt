@@ -1,7 +1,6 @@
 package com.ryoga.blelogger.ui.beacon_info_list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +39,7 @@ class BeaconInfoListFragment : Fragment() {
         _mBinding = BeaconInfoListFragmentBinding.inflate(layoutInflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
             title = getString(R.string.beacon_info_list_title)
             show()
         }
