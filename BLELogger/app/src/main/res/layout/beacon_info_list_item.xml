@@ -11,11 +11,16 @@
     android:clipToPadding="false"
     android:elevation="16dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:clipChildren="false"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/text_view_beacon_name"
@@ -38,6 +43,7 @@
             android:layout_marginEnd="36dp"
             android:enabled="false"
             android:hint="ビーコン名"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_beacon_name"
@@ -51,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:maxLines="1"
             android:text="@string/beacon_info_list_uuid"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -66,6 +73,7 @@
             android:layout_marginEnd="36dp"
             android:enabled="false"
             android:hint="Uuid"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_uuid_head"
@@ -92,8 +100,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
+            android:digits="0123456789"
             android:enabled="false"
             android:hint="Major"
+            android:inputType="number"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_major_head"
@@ -123,8 +134,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
+            android:digits="0123456789"
             android:enabled="false"
             android:hint="Mainor"
+            android:inputType="number"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_minor_head"
