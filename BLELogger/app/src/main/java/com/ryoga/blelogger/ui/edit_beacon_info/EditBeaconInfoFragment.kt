@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.ryoga.blelogger.R
 import com.ryoga.blelogger.data.model.BeaconInfo
 import com.ryoga.blelogger.databinding.EditBeaconInfoFragmentBinding
 
@@ -33,7 +34,7 @@ class EditBeaconInfoFragment(private var beaconInfo: BeaconInfo, private val pos
             setDisplayHomeAsUpEnabled(true)
             setHomeButtonEnabled(true)
             setHasOptionsMenu(true)
-            title = "ビーコン情報の編集"
+            title = getString(R.string.edit_beacon_info_title)
             show()
         }
 

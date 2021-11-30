@@ -1,14 +1,22 @@
 <resources>
     <string name="app_name">BLELogger</string>
+
+    <!--　ビーコン情報のアイテム-->
+    <string name="beacon_info_list_item_name">ビーコン名：</string>
     <string name="beacon_info_list_uuid">UUID：</string>
     <string name="beacon_info_list_major">Major：</string>
     <string name="beacon_info_list_minor">Minor：</string>
-    <string name="beacon_info_list_item_button_edit">編集</string>
-    <string name="beacon_info_list_item_button_remove">削除</string>
-    <string name="beacon_info_list_item_name">ビーコン名：</string>
+
+    <!-- ビーコン情報一覧-->
     <string name="beacon_info_list_title">監視ビーコンリスト</string>
-    <string name="add_beacon_info_button">ビーコン情報追加</string>
     <string name="beacon_info_list_empty">監視対象のビーコンはありません。</string>
 
+    <!-- ビーコン情報追加画面-->
+    <string name="add_beacon_info_button">ビーコン情報追加</string>
     <string name="add_beacon_info_title">監視対象の追加</string>
+
+    <!--　ビーコン情報編集画面-->
+    <string name="edit_beacon_info_button">ビーコン情報変更</string>
+    <string name="edit_beacon_info_title">ビーコン情報の編集</string>
+
 </resources>
