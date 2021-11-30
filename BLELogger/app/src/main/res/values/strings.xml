@@ -21,4 +21,7 @@
     <string name="edit_beacon_info_button">ビーコン情報変更</string>
     <string name="edit_beacon_info_title">ビーコン情報の編集</string>
 
+    <!-- メイン　スキャン画面-->
+    <string name="scan_beacon_title">ビーコンスキャン</string>
+
 </resources>
