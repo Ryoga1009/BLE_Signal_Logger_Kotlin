@@ -31,11 +31,18 @@ class BeaconInfoFileRepository(private val context: Context) {
 
     fun writeBeaconInfoList(beaconInfoList: List<BeaconInfo>): Boolean {
         val json = Json.encodeToString(beaconInfoList)
-        
+
         context.openFileOutput(fileName, Context.MODE_PRIVATE).use {
             it.write(json.toByteArray())
         }
         return true
+    }
+
+    fun updateBeaconInfo(beaconInfo: BeaconInfo, position: Int): Boolean {
+        val beaconInfoList = loadBeaconInfoLost()
+
+        beaconInfoList[position] = beaconInfo
+        return writeBeaconInfoList(beaconInfoList)
     }
 
     fun loadBeaconInfoLost(): ArrayList<BeaconInfo> {
