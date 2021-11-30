@@ -1,12 +1,15 @@
 package com.ryoga.blelogger.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.ryoga.blelogger.R
+import com.ryoga.blelogger.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
@@ -14,17 +17,32 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var mViewModel: MainViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    private var _mBinding: MainFragmentBinding? = null
+    private val mBinding get() = _mBinding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        mViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(MainViewModel::class.java)
+        _mBinding = MainFragmentBinding.inflate(layoutInflater, container, false)
+
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+            setHasOptionsMenu(true)
+            title = getString(R.string.scan_beacon_title)
+            show()
+        }
+
+        return mBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        fragmentManager?.popBackStack()
+        return super.onOptionsItemSelected(item)
     }
-
 }
