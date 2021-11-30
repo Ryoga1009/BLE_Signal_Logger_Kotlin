@@ -10,6 +10,8 @@
     <!-- ビーコン情報一覧-->
     <string name="beacon_info_list_title">監視ビーコンリスト</string>
     <string name="beacon_info_list_empty">監視対象のビーコンはありません。</string>
+    <string name="beacon_info_list_start_button">スキャン　スタート</string>
+
 
     <!-- ビーコン情報追加画面-->
     <string name="add_beacon_info_button">ビーコン情報追加</string>
