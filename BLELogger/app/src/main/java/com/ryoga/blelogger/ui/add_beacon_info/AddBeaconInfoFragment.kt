@@ -1,7 +1,6 @@
 package com.ryoga.blelogger.ui.add_beacon_info
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -58,10 +57,8 @@ class AddBeaconInfoFragment : Fragment() {
             editTextMinor.isEnabled = true
         }
 
-
-
         mBinding.inputForm.imageViewRemove.isVisible = false
-
+        mBinding.inputForm.rootConstraint.isClickable = false
 
         mBinding.buttonAddBeaconInfo.setOnClickListener {
             val beaconInfo = BeaconInfo(
