@@ -13,6 +13,7 @@ import com.ryoga.blelogger.R
 import com.ryoga.blelogger.databinding.BeaconInfoListFragmentBinding
 import com.ryoga.blelogger.item.BeaconInfoItem
 import com.ryoga.blelogger.ui.add_beacon_info.AddBeaconInfoFragment
+import com.ryoga.blelogger.ui.edit_beacon_info.EditBeaconInfoFragment
 import com.xwray.groupie.GroupieAdapter
 
 
@@ -65,9 +66,11 @@ class BeaconInfoListFragment : Fragment() {
         viewModel.mBeaconInfoList.observe(viewLifecycleOwner) { list ->
             adapter.clear()
             list.forEach { beaconInfo ->
-                adapter.add(BeaconInfoItem(beaconInfo) { position ->
+                adapter.add(BeaconInfoItem(beaconInfo, { position ->
                     viewModel.removeBeaconInfo(position)
-                })
+                }, { beaconInfo, position ->
+                    replaceFragment(EditBeaconInfoFragment(beaconInfo, position))
+                }))
             }
         }
 

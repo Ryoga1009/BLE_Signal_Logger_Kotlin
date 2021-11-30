@@ -1,7 +1,6 @@
 package com.ryoga.blelogger.item
 
 import android.view.View
-import androidx.core.view.isVisible
 import com.ryoga.blelogger.R
 import com.ryoga.blelogger.data.model.BeaconInfo
 import com.ryoga.blelogger.databinding.BeaconInfoListItemBinding
@@ -9,7 +8,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class BeaconInfoItem(
     private val beaconInfo: BeaconInfo,
-    private val removeButtonClick: (position: Int) -> Unit
+    private val removeButtonClick: (position: Int) -> Unit,
+    private val cardClick: (beaconInfo: BeaconInfo, position: Int) -> Unit
 ) :
     BindableItem<BeaconInfoListItemBinding>() {
 
@@ -25,6 +25,10 @@ class BeaconInfoItem(
 
         viewBinding.imageViewRemove.setOnClickListener {
             removeButtonClick(position)
+        }
+
+        viewBinding.rootConstraint.setOnClickListener {
+            cardClick(beaconInfo, position)
         }
     }
 
