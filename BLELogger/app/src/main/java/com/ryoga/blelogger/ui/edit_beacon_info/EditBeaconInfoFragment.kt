@@ -45,7 +45,7 @@ class EditBeaconInfoFragment(private var beaconInfo: BeaconInfo, private val pos
         super.onViewCreated(view, savedInstanceState)
 
         mBinding.inputForm.imageViewRemove.isVisible = false
-        mBinding.inputForm.rootConstraint.isClickable = false
+        mBinding.inputForm.viewClick.isClickable = false
 
         mBinding.inputForm.apply {
             editTextBeaconName.setText(beaconInfo.beaconName)

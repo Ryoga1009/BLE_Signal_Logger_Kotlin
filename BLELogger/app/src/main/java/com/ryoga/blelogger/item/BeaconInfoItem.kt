@@ -27,7 +27,7 @@ class BeaconInfoItem(
             removeButtonClick(position)
         }
 
-        viewBinding.rootConstraint.setOnClickListener {
+        viewBinding.viewClick.setOnClickListener {
             cardClick(beaconInfo, position)
         }
     }

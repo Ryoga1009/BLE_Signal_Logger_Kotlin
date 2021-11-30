@@ -58,7 +58,7 @@ class AddBeaconInfoFragment : Fragment() {
         }
 
         mBinding.inputForm.imageViewRemove.isVisible = false
-        mBinding.inputForm.rootConstraint.isClickable = false
+        mBinding.inputForm.viewClick.isClickable = false
 
         mBinding.buttonAddBeaconInfo.setOnClickListener {
             val beaconInfo = BeaconInfo(
