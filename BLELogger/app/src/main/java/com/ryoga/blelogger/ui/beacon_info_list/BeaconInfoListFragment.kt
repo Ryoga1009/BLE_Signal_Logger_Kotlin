@@ -14,6 +14,7 @@ import com.ryoga.blelogger.databinding.BeaconInfoListFragmentBinding
 import com.ryoga.blelogger.item.BeaconInfoItem
 import com.ryoga.blelogger.ui.add_beacon_info.AddBeaconInfoFragment
 import com.ryoga.blelogger.ui.edit_beacon_info.EditBeaconInfoFragment
+import com.ryoga.blelogger.ui.main.MainFragment
 import com.xwray.groupie.GroupieAdapter
 
 
@@ -59,6 +60,10 @@ class BeaconInfoListFragment : Fragment() {
             viewModel.FabCLicked()
         }
 
+        mBinding.buttonScanStart.setOnClickListener {
+            replaceFragment(MainFragment.newInstance())
+        }
+
         viewModel.mIsFabClicked.observe(viewLifecycleOwner) {
             if (it) replaceFragment(AddBeaconInfoFragment.newInstance())
         }
@@ -76,7 +81,10 @@ class BeaconInfoListFragment : Fragment() {
 
         viewModel.mIsBeaconListEmpty.observe(viewLifecycleOwner) {
             mBinding.textViewEmpty.isVisible = it
+        }
 
+        viewModel.mIsButtonEnable.observe(viewLifecycleOwner) {
+            mBinding.buttonScanStart.isEnabled = it
         }
 
         viewModel.loadBeaconInfoList()

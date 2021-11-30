@@ -18,6 +18,9 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
     private var _mIsBeaconListEmpty = MutableLiveData<Boolean>(true)
     var mIsBeaconListEmpty: LiveData<Boolean> = _mIsBeaconListEmpty
 
+    private var _mIsButtonEnable = MutableLiveData<Boolean>(false)
+    var mIsButtonEnable: LiveData<Boolean> = _mIsButtonEnable
+
     private val mBeaconInfoFileRepository = BeaconInfoFileRepository(application.applicationContext)
 
 
@@ -28,6 +31,8 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
     fun loadBeaconInfoList() {
         _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
         _mIsBeaconListEmpty.value = mBeaconInfoList.value?.isEmpty()
+        _mIsButtonEnable.value = !(mBeaconInfoList.value.isNullOrEmpty())
+
     }
 
     fun removeBeaconInfo(position: Int) {
@@ -36,6 +41,8 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
 
         mBeaconInfoFileRepository.writeBeaconInfoList(list)
         _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
+
+        _mIsButtonEnable.value = !(mBeaconInfoList.value.isNullOrEmpty())
 
         _mIsBeaconListEmpty.value = mBeaconInfoList.value?.isEmpty()
 
