@@ -40,10 +40,17 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:elevation="10dp"
         android:focusable="true"
         android:src="@drawable/fab_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_footer"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        app:constraint_referenced_ids="view_footer,button_scan_start" />
 
     <View
         android:id="@+id/view_footer"
@@ -55,6 +62,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_scan_start"
         style="@style/button"
         android:layout_width="0dp"
         android:layout_height="48dp"
