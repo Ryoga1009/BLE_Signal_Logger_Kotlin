@@ -14,7 +14,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _mBeaconInfoList = MutableLiveData<List<BeaconInfo>>()
     val mBeaconInfoList: LiveData<List<BeaconInfo>> = _mBeaconInfoList
 
+    private val _mStartButtonEnabled = MutableLiveData<Boolean>(true)
+    val mStartButtonEnabled: LiveData<Boolean> = _mStartButtonEnabled
+
+    private val _mStopButtonEnabled = MutableLiveData<Boolean>(false)
+    val mStopButtonEnabled: LiveData<Boolean> = _mStopButtonEnabled
+
     init {
         _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
+    }
+
+    fun onStartButtonClicked() {
+        _mStartButtonEnabled.value = false
+        _mStopButtonEnabled.value = true
+    }
+
+    fun onStopButtonClicked() {
+        _mStartButtonEnabled.value = true
+        _mStopButtonEnabled.value = false
     }
 }

@@ -52,11 +52,28 @@ class MainFragment : Fragment() {
         mBinding.beaconScanList.layoutManager = LinearLayoutManager(requireContext())
 
 
+        mBinding.buttonStart.setOnClickListener {
+            mViewModel.onStartButtonClicked()
+        }
+
+        mBinding.buttonStop.setOnClickListener {
+            mViewModel.onStopButtonClicked()
+        }
+
         mViewModel.mBeaconInfoList.observe(viewLifecycleOwner) {
             it.forEach { beaconInfo ->
                 adapter.add(BeaconRssiItem(beaconInfo))
             }
         }
+
+        mViewModel.mStartButtonEnabled.observe(viewLifecycleOwner) {
+            mBinding.buttonStart.isEnabled = it
+        }
+
+        mViewModel.mStopButtonEnabled.observe(viewLifecycleOwner) {
+            mBinding.buttonStop.isEnabled = it
+        }
+
 
     }
 
