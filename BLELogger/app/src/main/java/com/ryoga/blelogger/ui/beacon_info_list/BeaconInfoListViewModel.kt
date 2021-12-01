@@ -36,8 +36,8 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun removeBeaconInfo(position: Int) {
-        var list = mBeaconInfoFileRepository.loadBeaconInfoLost()
-        list.remove(list.get(position))
+        val list = mBeaconInfoFileRepository.loadBeaconInfoLost()
+        list.remove(list[position])
 
         mBeaconInfoFileRepository.writeBeaconInfoList(list)
         _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
