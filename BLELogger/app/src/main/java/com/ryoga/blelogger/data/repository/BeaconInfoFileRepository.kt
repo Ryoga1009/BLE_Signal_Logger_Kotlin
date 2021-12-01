@@ -48,20 +48,21 @@ class BeaconInfoFileRepository(private val context: Context) {
     fun loadBeaconInfoLost(): ArrayList<BeaconInfo> {
 
         var beaconInfoList = ArrayList<BeaconInfo>()
+        var data: String = ""
 
-        val file = File(filePath + "/" + fileName)
-        val fileReader = FileReader(file)
-        val bufferedReader = BufferedReader(fileReader)
-        if (!file.exists()) {
+        try {
+            val file = File(filePath + "/" + fileName)
+            val fileReader = FileReader(file)
+            val bufferedReader = BufferedReader(fileReader)
+
+            bufferedReader.forEachLine {
+                data += it
+            }
+            bufferedReader.close()
+
+        } catch (e: Exception) {
             return beaconInfoList
         }
-
-        var data: String = ""
-        bufferedReader.forEachLine {
-            data += it
-        }
-        bufferedReader.close()
-
         if (data.isNullOrEmpty()) {
             return beaconInfoList
         }
