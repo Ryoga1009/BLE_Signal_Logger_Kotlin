@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ryoga.blelogger.R
 import com.ryoga.blelogger.databinding.MainFragmentBinding
+import com.ryoga.blelogger.item.BeaconRssiItem
+import com.xwray.groupie.GroupieAdapter
 
 class MainFragment : Fragment() {
 
@@ -39,6 +42,22 @@ class MainFragment : Fragment() {
         }
 
         return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = GroupieAdapter()
+        mBinding.beaconScanList.adapter = adapter
+        mBinding.beaconScanList.layoutManager = LinearLayoutManager(requireContext())
+
+
+        mViewModel.mBeaconInfoList.observe(viewLifecycleOwner) {
+            it.forEach { beaconInfo ->
+                adapter.add(BeaconRssiItem(beaconInfo))
+            }
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
