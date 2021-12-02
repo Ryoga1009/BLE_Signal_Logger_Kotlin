@@ -29,9 +29,9 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun loadBeaconInfoList() {
-        _mBeaconInfoList.postValue(mBeaconInfoFileRepository.loadBeaconInfoLost())
-        _mIsBeaconListEmpty.postValue(mBeaconInfoList.value?.isEmpty())
-        _mIsButtonEnable.postValue(!(mBeaconInfoList.value.isNullOrEmpty()))
+        _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
+        _mIsBeaconListEmpty.value = mBeaconInfoList.value?.isEmpty()
+        _mIsButtonEnable.value = !(mBeaconInfoList.value.isNullOrEmpty())
 
     }
 
@@ -40,11 +40,11 @@ class BeaconInfoListViewModel(application: Application) : AndroidViewModel(appli
         list.remove(list[position])
 
         mBeaconInfoFileRepository.writeBeaconInfoList(list)
-        _mBeaconInfoList.postValue(mBeaconInfoFileRepository.loadBeaconInfoLost())
+        _mBeaconInfoList.value = mBeaconInfoFileRepository.loadBeaconInfoLost()
 
-        _mIsButtonEnable.postValue(!(mBeaconInfoList.value.isNullOrEmpty()))
+        _mIsButtonEnable.value = !(mBeaconInfoList.value.isNullOrEmpty())
 
-        _mIsBeaconListEmpty.postValue(mBeaconInfoList.value?.isEmpty())
+        _mIsBeaconListEmpty.value = mBeaconInfoList.value?.isEmpty()
 
     }
 }

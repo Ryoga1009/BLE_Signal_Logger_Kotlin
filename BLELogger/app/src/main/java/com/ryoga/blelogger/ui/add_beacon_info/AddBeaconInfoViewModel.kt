@@ -17,7 +17,7 @@ class AddBeaconInfoViewModel(application: Application) : AndroidViewModel(applic
         BeaconInfoFileRepository(getApplication<Application>().applicationContext)
 
     fun addButtonClicked(beaconInfo: BeaconInfo) {
-        _mIsBeaconInfoAddEnd.postValue(fileRepository.writeBeaconInfo(beaconInfo))
+        _mIsBeaconInfoAddEnd.value = fileRepository.writeBeaconInfo(beaconInfo)
     }
 
 
