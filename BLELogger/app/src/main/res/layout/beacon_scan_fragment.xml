@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.beacon_scan.BeaconScanFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/beacon_scan_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/main"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        app:constraint_referenced_ids="button_start,button_stop,view_footer_button" />
+
+    <View
+        android:id="@+id/view_footer_button"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_stop"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:text="STOP"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/view_footer_button"
+        app:layout_constraintEnd_toStartOf="@id/button_start"
+        app:layout_constraintStart_toStartOf="@id/view_footer_button"
+        app:layout_constraintTop_toTopOf="@id/view_footer_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_start"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="START"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/view_footer_button"
+        app:layout_constraintEnd_toEndOf="@id/view_footer_button"
+        app:layout_constraintStart_toEndOf="@id/button_stop"
+        app:layout_constraintTop_toTopOf="@id/view_footer_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/add_beacon_info_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/beacon_info_list_fragment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/beacon_info_list_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/beacon_scan_fragment.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/ble_info_list_item.xml" value="0.45" />
         <entry key="app/src/main/res/layout/first_list_fragment.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.16893115942028986" />
