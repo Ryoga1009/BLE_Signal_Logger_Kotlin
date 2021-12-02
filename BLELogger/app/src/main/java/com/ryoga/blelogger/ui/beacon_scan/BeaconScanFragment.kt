@@ -9,12 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ryoga.blelogger.MainViewModel
 import com.ryoga.blelogger.R
-import com.ryoga.blelogger.databinding.MainFragmentBinding
+import com.ryoga.blelogger.databinding.BeaconScanFragmentBinding
 import com.ryoga.blelogger.item.BeaconRssiItem
 import com.xwray.groupie.GroupieAdapter
-import org.altbeacon.beacon.BeaconManager
-import org.altbeacon.beacon.BeaconParser
 
 class BeaconScanFragment : Fragment() {
 
@@ -23,9 +22,11 @@ class BeaconScanFragment : Fragment() {
     }
 
     private lateinit var mViewModel: BeaconScanViewModel
+    private lateinit var mMainViewModel: MainViewModel
 
-    private var _mBinding: MainFragmentBinding? = null
+    private var _mBinding: BeaconScanFragmentBinding? = null
     private val mBinding get() = _mBinding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,12 @@ class BeaconScanFragment : Fragment() {
     ): View {
         mViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(BeaconScanViewModel::class.java)
-        _mBinding = MainFragmentBinding.inflate(layoutInflater, container, false)
+
+        activity?.run {
+            mMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        }
+
+        _mBinding = BeaconScanFragmentBinding.inflate(layoutInflater, container, false)
 
         (activity as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -56,10 +62,12 @@ class BeaconScanFragment : Fragment() {
 
         mBinding.buttonStart.setOnClickListener {
             mViewModel.onStartButtonClicked()
+            mMainViewModel.onStartButtonClicked()
         }
 
         mBinding.buttonStop.setOnClickListener {
             mViewModel.onStopButtonClicked()
+            mMainViewModel.onStopButtonClicked()
         }
 
         mViewModel.mBeaconInfoList.observe(viewLifecycleOwner) {
@@ -75,7 +83,6 @@ class BeaconScanFragment : Fragment() {
         mViewModel.mStopButtonEnabled.observe(viewLifecycleOwner) {
             mBinding.buttonStop.isEnabled = it
         }
-
 
     }
 
