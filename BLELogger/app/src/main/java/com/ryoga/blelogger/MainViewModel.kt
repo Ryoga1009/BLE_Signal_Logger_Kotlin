@@ -7,7 +7,15 @@ import androidx.lifecycle.MutableLiveData
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _mIsBeaconRangingStarted = MutableLiveData<Boolean>(false)
-    val mIsBeaconRagingStarted: LiveData<Boolean> = _mIsBeaconRangingStarted
-    
+    private val _mIsBeaconRanging = MutableLiveData<Boolean>(false)
+    val mIsBeaconRaging: LiveData<Boolean> = _mIsBeaconRanging
+
+
+    fun onStartButtonClicked() {
+        _mIsBeaconRanging.postValue(true)
+    }
+
+    fun onStopButtonClicked() {
+        _mIsBeaconRanging.postValue(false)
+    }
 }
