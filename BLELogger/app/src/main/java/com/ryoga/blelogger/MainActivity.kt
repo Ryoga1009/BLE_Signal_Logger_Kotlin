@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         mBeaconManager.beaconParsers.add(BeaconParser().setBeaconLayout(BEACON_FORMAT))
 
         mBeaconManager.getRegionViewModel(region).rangedBeacons.observe(this, { beaconList ->
-            // ビーコンの電池がないので定期的にトースト出すだけ
+            // 一旦トーストに検知できたビーコンの数を表示　
+            // ビーコンの電池買ってきたら色々実装後に削除
             Toast.makeText(this, "Beaconの数：" + beaconList.size, Toast.LENGTH_SHORT).show()
             beaconList.forEach { beacon ->
 
