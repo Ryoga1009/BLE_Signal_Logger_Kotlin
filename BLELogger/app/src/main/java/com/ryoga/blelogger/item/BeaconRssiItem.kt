@@ -6,7 +6,7 @@ import com.ryoga.blelogger.data.model.BeaconInfo
 import com.ryoga.blelogger.databinding.BeaconRssiListItemBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
-class BeaconRssiItem(private val beaconInfo: BeaconInfo) :
+class BeaconRssiItem(val beaconInfo: BeaconInfo) :
     BindableItem<BeaconRssiListItemBinding>() {
 
     var rssi: Int = 0
