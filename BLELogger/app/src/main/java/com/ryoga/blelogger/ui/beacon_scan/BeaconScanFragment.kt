@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ryoga.blelogger.MainViewModel
 import com.ryoga.blelogger.R
 import com.ryoga.blelogger.databinding.BeaconScanFragmentBinding
-import com.ryoga.blelogger.item.BeaconRssiItem
 import com.xwray.groupie.GroupieAdapter
 
 class BeaconScanFragment : Fragment() {
@@ -21,8 +20,7 @@ class BeaconScanFragment : Fragment() {
         fun newInstance() = BeaconScanFragment()
     }
 
-    private lateinit var mViewModel: BeaconScanViewModel
-    private lateinit var mMainViewModel: MainViewModel
+    private val mMainViewModel: MainViewModel by activityViewModels()
 
     private var _mBinding: BeaconScanFragmentBinding? = null
     private val mBinding get() = _mBinding!!
@@ -32,14 +30,9 @@ class BeaconScanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mViewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(BeaconScanViewModel::class.java)
-
-        activity?.run {
-            mMainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        }
-
         _mBinding = BeaconScanFragmentBinding.inflate(layoutInflater, container, false)
+
+        mMainViewModel.onScanFragmentCreate()
 
         (activity as AppCompatActivity).supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -61,29 +54,24 @@ class BeaconScanFragment : Fragment() {
 
 
         mBinding.buttonStart.setOnClickListener {
-            mViewModel.onStartButtonClicked()
             mMainViewModel.onStartButtonClicked()
         }
 
         mBinding.buttonStop.setOnClickListener {
-            mViewModel.onStopButtonClicked()
             mMainViewModel.onStopButtonClicked()
         }
 
-        mViewModel.mBeaconInfoList.observe(viewLifecycleOwner) {
+        mMainViewModel.mBeaconList.observe(viewLifecycleOwner) {
+            adapter.clear()
             it.forEach { beaconInfo ->
-                adapter.add(BeaconRssiItem(beaconInfo))
+                adapter.add(beaconInfo)
             }
         }
 
-        mViewModel.mStartButtonEnabled.observe(viewLifecycleOwner) {
-            mBinding.buttonStart.isEnabled = it
-        }
-
-        mViewModel.mStopButtonEnabled.observe(viewLifecycleOwner) {
+        mMainViewModel.mIsBeaconRaging.observe(viewLifecycleOwner) {
+            mBinding.buttonStart.isEnabled = !it
             mBinding.buttonStop.isEnabled = it
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
