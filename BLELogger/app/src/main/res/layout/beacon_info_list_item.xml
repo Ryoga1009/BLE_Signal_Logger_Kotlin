@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
 
         <View
             android:id="@+id/view_click"
@@ -82,7 +84,6 @@
             android:layout_marginEnd="36dp"
             android:enabled="false"
             android:hint="Uuid"
-            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/text_view_uuid_head"
